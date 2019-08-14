@@ -1,0 +1,21 @@
+{
+    "name": "vue-simple-global-state-store-manager",
+    "version": "1.0.0",
+    "main": "./vue-simple-global-state-store-manager.js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/masx200/vue-simple-global-state-store-manager.git"
+    },
+    "author": "masx200 <34191203+masx200@users.noreply.github.com>",
+    "license": "MIT",
+    "description": "适用于Vue.js的极简全局状态管理库,基于Proxy实现",
+    "bugs": {
+        "url": "https://github.com/masx200/vue-simple-global-state-store-manager/issues"
+    },
+    "homepage": "https://github.com/masx200/vue-simple-global-state-store-manager#readme",
+    "scripts": {},
+    "keywords": [],
+    "peerDependencies": {
+        "vue": "^2.6.10"
+    },
+}
