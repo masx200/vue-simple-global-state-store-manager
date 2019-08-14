@@ -1,5 +1,8 @@
 import Vue from "vue/dist/vue.esm.browser.js";
 export default function(组件状态对应全局状态表, vueinitopt) {
+
+//Vue.extend自动识别是函数还是参数对象
+
   var vueinitconstructfun = Vue.extend(vueinitopt);
 com.prototype  =vueinitconstructfun.prototype
 return com
