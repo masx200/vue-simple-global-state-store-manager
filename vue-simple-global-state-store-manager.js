@@ -6,7 +6,16 @@ const temptarget = new EventTarget();
 const simpleglobalstatestore = {};
 
 export default function(组件状态对应全局状态表, vueinitopt) {
+Object.keys(组件状态对应全局状态表).forEach((k)=>{
 
+if(typeof k==="symbol"||String(k).startsWith("_")||String(k).startsWith("$")){
+
+throw new TypeError("")
+
+}
+
+
+})
 //Vue.extend自动识别是函数还是参数对象
 
   var vueinitconstructfun = Vue.extend(vueinitopt);
