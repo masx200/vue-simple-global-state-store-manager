@@ -21,6 +21,25 @@ throw new TypeError("invalid key")
 
 
 })
+
+Object.values(组件状态对应全局状态表).forEach((v)=>{
+
+if(
+
+typeof v==="string"
+//||
+
+
+//String(k).startsWith("_")||String(k).startsWith("$")
+
+){
+
+throw new TypeError("invalid value")
+
+}
+
+
+})
 //Vue.extend自动识别是函数还是参数对象
 
   var vueinitconstructfun = Vue.extend(vueinitopt);
