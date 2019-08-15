@@ -17,5 +17,5 @@
     "keywords": [],
     "peerDependencies": {
         "vue": "^2.6.10"
-    },
+    }
 }
