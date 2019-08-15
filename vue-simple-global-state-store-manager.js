@@ -26,7 +26,7 @@ Object.values(组件状态对应全局状态表).forEach((v)=>{
 
 if(
 
-typeof v==="string"
+typeof v!=="string"
 //||
 
 
