@@ -5,7 +5,25 @@ import Vue from "vue/dist/vue.esm.browser.js";
 const temptarget = new EventTarget();
 const simpleglobalstatestore = {};
 
+
+function newobjjson(obj) {
+  if (typeof obj !== "object") {
+    throw new TypeError("传入的参数必须是个object!");
+  }
+  return JSON.parse(JSON.stringify(obj));
+}
+function isobject(o) {
+  return (
+    typeof o === "object" &&
+    Object.prototype.toString.call(o) === "[object Object]" &&
+    o.__proto__ === Object.prototype
+  );
+}
 export default function(组件状态对应全局状态表, vueinitopt) {
+  if (!isobject(组件状态对应全局状态表)) {
+    throw Error("invalid object");
+  }
+  const 组件状态对应全局状态表 = newobjjson(组件状态对应全局状态表);
 Object.keys(组件状态对应全局状态表).forEach((k)=>{
 
 if(
