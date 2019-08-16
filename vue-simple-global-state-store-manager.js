@@ -1,5 +1,5 @@
 import Vue from "vue/dist/vue.esm.browser.js";
-//export {Vue}
+
 const temptarget = new EventTarget();
 const simpleglobalstatestore = {};
 
@@ -20,6 +20,13 @@ export  function bindGlobalStore(jsonobjopt, vueinitopt) {
   if (!isobject(jsonobjopt)) {
     throw Error("invalid object");
   }
+
+
+
+if("function"!==typeof vueinitopt&&"object"!==typeof vueinitopt){
+throw Error("invalid component");
+}
+
   const 全局状态对应组件状态表 = newobjjson(jsonobjopt);
 
   Object.values(全局状态对应组件状态表).forEach(v => {
