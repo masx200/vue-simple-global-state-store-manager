@@ -34,10 +34,7 @@ export  function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
     
     })
-    Object.keys(全局状态对应组件状态表).forEach(key => {
-     const eventname = "globalstatechange-" + key;
-    //
-    })
+    
   //Vue.extend自动识别是组件构造函数函数还是参数对象
 
   var vueinitconstructfun = Vue.extend(vueinitopt);
@@ -54,6 +51,12 @@ com[k]=vueinitconstructfun[k]
   return com;
 
   function com(o) {
+Object.keys(全局状态对应组件状态表).forEach(key => {
+     const eventname = "globalstatechange-" + key;
+    //
+    })
+function onmounted(){}
+function ondestroyed(){}
     var i = new Proxy(Object.create(vueinitconstructfun.prototype), {
       set(t, p, v) {
         Reflect.set(t, p, v);
