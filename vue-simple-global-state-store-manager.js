@@ -1,5 +1,5 @@
 import Vue from "vue/dist/vue.esm.browser.js";
-
+export {Vue}
 const temptarget = new EventTarget();
 const simpleglobalstatestore = {};
 
