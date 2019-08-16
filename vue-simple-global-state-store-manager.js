@@ -23,7 +23,7 @@ export  function bindGlobalStore(jsonobjopt, vueinitopt) {
 
 
 
-if("function"!==typeof vueinitopt||"object"!==typeof vueinitopt){
+if(!("function"==typeof vueinitopt||"object"==typeof vueinitopt)){
 throw Error("invalid component");
 }
 
