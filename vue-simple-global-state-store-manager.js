@@ -60,7 +60,9 @@ com[k]=vueinitconstructfun[k]
         if (Object.values(全局状态对应组件状态表).includes(p)) {
           console.log(t, p, v);
         }
-
+else{
+console.log(t, p, v);
+}
         return true;
       }
     });
