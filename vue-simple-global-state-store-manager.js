@@ -1,5 +1,6 @@
 import Vue from "vue/dist/vue.esm.browser.js";
-
+const _isDestroyed = "_isDestroyed";
+const _isMounted = "_isMounted";
 const temptarget = new EventTarget();
 const simpleglobalstatestore = {};
 
@@ -49,16 +50,34 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   return com;
 
   function com(o) {
+    const eventchangehandler = {};
+
     Object.keys(全局状态对应组件状态表).forEach(key => {
-      const eventname = "globalstatechange-" + key;
-      //
+      const eventname = key;
+      eventchangehandler[eventname] = function() {
+        console.log(eventname);
+      };
     });
-    function eventchangehandler() {}
     function onmounted() {
       console.log("onmounted");
+      Object.keys(全局状态对应组件状态表).forEach(key => {
+        const eventname = key;
+        //
+
+        temptarget.addEventListener(eventname, eventchangehandler[eventname]);
+      });
     }
     function ondestroyed() {
       console.log("ondestroyed");
+      Object.keys(全局状态对应组件状态表).forEach(key => {
+        const eventname = key;
+        //
+
+        temptarget.removeEventListener(
+          eventname,
+          eventchangehandler[eventname]
+        );
+      });
     }
     var i = new Proxy(Object.create(vueinitconstructfun.prototype), {
       set(t, p, v) {
@@ -69,12 +88,12 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
           console.log(t, p, v);
         }
         //_isMounted;
-        if ("_isMounted" === p && v === true && t["_isMounted"] === false) {
+        if (_isMounted === p && v === true && t[_isMounted] === false) {
           onmounted();
         }
 
         //_isDestroyed
-        if ("_isDestroyed" === p && v === true && t["_isDestroyed"] === false) {
+        if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
           ondestroyed();
         }
         return true;
