@@ -1,4 +1,14 @@
 import Vue from "vue/dist/vue.esm.browser.js";
+
+function isinvalidstate(newstate) {
+  return (
+    "undefined" === typeof newstate ||
+    "function" === typeof newstate ||
+    newstate === null ||
+    "symbol" === typeof newstate
+  );
+}
+
 const _isDestroyed = "_isDestroyed";
 const _isMounted = "_isMounted";
 const temptarget = new EventTarget();
@@ -108,7 +118,7 @@ vueinitconstructfun=vueinitopt
           console.log("触发状态改变事件", eventname);
         } else {
           //   console.log(t, p, v);
-        }
+        
         //_isMounted;
         if (_isMounted === p && v === true && t[_isMounted] === false) {
           console.log(t, p, v);
@@ -121,6 +131,7 @@ vueinitconstructfun=vueinitopt
           ondestroyed();
         }
         Reflect.set(t, p, v);
+}
         return true;
       }
     });
