@@ -93,7 +93,6 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
     var i = new Proxy(Object.create(vueinitconstructfun.prototype), {
       set(t, p, v) {
-        Reflect.set(t, p, v);
         if (Object.values(全局状态对应组件状态表).includes(p)) {
           console.log(t, p, v);
           //p是组件状态
@@ -112,6 +111,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
         if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
           ondestroyed();
         }
+        Reflect.set(t, p, v);
         return true;
       }
     });
