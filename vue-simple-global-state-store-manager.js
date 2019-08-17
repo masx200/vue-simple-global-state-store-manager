@@ -86,6 +86,10 @@ const vuecominstance=Object.create(vueinitconstructfun.prototype)
       const eventname = key;
       eventchangehandler[eventname] = function() {
         console.log("接受状态改变事件", eventname);
+
+
+Reflect.set(vuecominstance, 全局状态对应组件状态表[key], simpleglobalstatestore[key]);
+
       };
     });
     function onmounted() {
