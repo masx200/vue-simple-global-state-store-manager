@@ -67,7 +67,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     Object.keys(全局状态对应组件状态表).forEach(key => {
       const eventname = key;
       eventchangehandler[eventname] = function() {
-        console.log(eventname);
+        console.log("接受状态改变事件", eventname);
       };
     });
     function onmounted() {
@@ -96,6 +96,10 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
         Reflect.set(t, p, v);
         if (Object.values(全局状态对应组件状态表).includes(p)) {
           console.log(t, p, v);
+          //p是组件状态
+          let eventname = 使用value从表中查询key(p);
+          temptarget.dispatchEvent(new Event(eventname));
+          console.log("触发状态改变事件", eventname);
         } else {
           console.log(t, p, v);
         }
