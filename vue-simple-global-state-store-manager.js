@@ -27,6 +27,14 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   }
 
   const 全局状态对应组件状态表 = newobjjson(jsonobjopt);
+  //一个组件状态只能绑定一个全局状态,否则报错
+  if (
+    Object.values(全局状态对应组件状态表).length !==
+    Array.from(new Set(Object.values(全局状态对应组件状态表))).length
+  ) {
+    throw new Error("一个组件状态只能绑定一个全局状态,");
+  }
+
   function 使用value从表中查询key(组件状态名) {
     return Object.entries(全局状态对应组件状态表).find(v => {
       return v[1] === 组件状态名;
