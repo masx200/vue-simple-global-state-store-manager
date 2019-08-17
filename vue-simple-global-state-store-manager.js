@@ -87,8 +87,8 @@ const vuecominstance=Object.create(vueinitconstructfun.prototype)
       eventchangehandler[eventname] = function() {
         console.log("接受状态改变事件", eventname);
 
-
-Reflect.set(vuecominstance, 全局状态对应组件状态表[key], simpleglobalstatestore[key]);
+var newstate=JSON.parse(JSON.stringify(simpleglobalstatestore[key]))
+Reflect.set(vuecominstance, 全局状态对应组件状态表[key], newstate);
 
       };
     });
@@ -127,7 +127,7 @@ if (isinvalidstate(v)) {
         }
           //p是组件状态
           let eventname = 使用value从表中查询key(p);
-simpleglobalstatestore[eventname]=v
+simpleglobalstatestore[eventname]=JSON.parse(JSON.stringify(v))
           temptarget.dispatchEvent(new Event(eventname));
           console.log("触发状态改变事件", eventname);
         } else {
