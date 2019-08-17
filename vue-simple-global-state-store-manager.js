@@ -112,6 +112,9 @@ vueinitconstructfun=vueinitopt
       set(t, p, v) {
         if (Object.values(全局状态对应组件状态表).includes(p)) {
           console.log(t, p, v);
+if (isinvalidstate(v)) {
+          throw Error("invalid state");
+        }
           //p是组件状态
           let eventname = 使用value从表中查询key(p);
           temptarget.dispatchEvent(new Event(eventname));
