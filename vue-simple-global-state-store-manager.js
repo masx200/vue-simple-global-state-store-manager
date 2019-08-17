@@ -102,10 +102,11 @@ Reflect.set(vuecominstance, 全局状态对应组件状态表[key], newstate);
     
 
 
-
+//如果全局状态没有初始值，则用组件状态代替
 if ("undefined" === typeof simpleglobalstatestore[key]) {
       simpleglobalstatestore[key] = vuecominstance[全局状态对应组件状态表[key]];
     }
+//组件挂载时同步一次状态
 temptarget.dispatchEvent(new Event(eventname));
 
   });
