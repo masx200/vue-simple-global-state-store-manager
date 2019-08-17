@@ -52,7 +52,14 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
 
   //Vue.extend自动识别是组件构造函数函数还是参数对象
 
-  var vueinitconstructfun = Vue.extend(vueinitopt);
+var vueinitconstructfun
+
+if("object"===typeof vueinitopt){
+   vueinitconstructfun = Vue.extend(vueinitopt);
+}else if("function"===typeof vueinitopt){
+vueinitconstructfun=vueinitopt
+
+}
   com.prototype = vueinitconstructfun.prototype;
 
   Object.keys(vueinitconstructfun).forEach(k => {
