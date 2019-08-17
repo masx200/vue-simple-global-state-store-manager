@@ -55,7 +55,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   var vueinitconstructfun = Vue.extend(vueinitopt);
   com.prototype = vueinitconstructfun.prototype;
 
-  Object.keys(com).forEach(k => {
+  Object.keys(vueinitconstructfun).forEach(k => {
     com[k] = vueinitconstructfun[k];
   });
 
