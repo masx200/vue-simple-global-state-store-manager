@@ -27,7 +27,11 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   }
 
   const 全局状态对应组件状态表 = newobjjson(jsonobjopt);
-
+  function 使用value从表中查询key(组件状态名) {
+    return Object.entries.find(v => {
+      return v[1] === 组件状态名;
+    })[0];
+  }
   Object.values(全局状态对应组件状态表).forEach(v => {
     if (
       typeof v !== "string" ||
