@@ -53,8 +53,13 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
       const eventname = "globalstatechange-" + key;
       //
     });
-    function onmounted() {}
-    function ondestroyed() {}
+    function eventchangehandler() {}
+    function onmounted() {
+      console.log("onmounted");
+    }
+    function ondestroyed() {
+      console.log("ondestroyed");
+    }
     var i = new Proxy(Object.create(vueinitconstructfun.prototype), {
       set(t, p, v) {
         Reflect.set(t, p, v);
@@ -62,6 +67,15 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
           console.log(t, p, v);
         } else {
           console.log(t, p, v);
+        }
+        //_isMounted;
+        if ("_isMounted" === p && v === true && t["_isMounted"] === false) {
+          onmounted();
+        }
+
+        //_isDestroyed
+        if ("_isDestroyed" === p && v === true && t["_isDestroyed"] === false) {
+          ondestroyed();
         }
         return true;
       }
