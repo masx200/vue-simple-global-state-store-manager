@@ -101,6 +101,11 @@ Reflect.set(vuecominstance, 全局状态对应组件状态表[key], newstate);
         temptarget.addEventListener(eventname, eventchangehandler[eventname]);
     
 
+
+
+if ("undefined" === typeof simpleglobalstatestore[key]) {
+      simpleglobalstatestore[key] = vuecominstance[全局状态对应组件状态表[key]];
+    }
 temptarget.dispatchEvent(new Event(eventname));
 
   });
