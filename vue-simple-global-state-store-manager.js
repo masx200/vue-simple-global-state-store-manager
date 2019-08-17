@@ -99,7 +99,11 @@ Reflect.set(vuecominstance, 全局状态对应组件状态表[key], newstate);
         //
 
         temptarget.addEventListener(eventname, eventchangehandler[eventname]);
-      });
+    
+
+temptarget.dispatchEvent(new Event(eventname));
+
+  });
     }
     function ondestroyed() {
       console.log("ondestroyed");
