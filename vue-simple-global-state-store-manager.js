@@ -127,6 +127,7 @@ if (isinvalidstate(v)) {
         }
           //p是组件状态
           let eventname = 使用value从表中查询key(p);
+simpleglobalstatestore[eventname]=v
           temptarget.dispatchEvent(new Event(eventname));
           console.log("触发状态改变事件", eventname);
         } else {
