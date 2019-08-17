@@ -100,15 +100,17 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
           temptarget.dispatchEvent(new Event(eventname));
           console.log("触发状态改变事件", eventname);
         } else {
-          console.log(t, p, v);
+          //   console.log(t, p, v);
         }
         //_isMounted;
         if (_isMounted === p && v === true && t[_isMounted] === false) {
+          console.log(t, p, v);
           onmounted();
         }
 
         //_isDestroyed
         if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
+          console.log(t, p, v);
           ondestroyed();
         }
         Reflect.set(t, p, v);
