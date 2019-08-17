@@ -79,6 +79,7 @@ vueinitconstructfun=vueinitopt
   return com;
 
   function com(o) {
+const vuecominstance=Object.create(vueinitconstructfun.prototype)
     const eventchangehandler = {};
 
     Object.keys(全局状态对应组件状态表).forEach(key => {
@@ -108,7 +109,12 @@ vueinitconstructfun=vueinitopt
         );
       });
     }
-    var i = new Proxy(Object.create(vueinitconstructfun.prototype), {
+    var i = new Proxy(
+
+vuecominstance
+
+
+, {
       set(t, p, v) {
         if (Object.values(全局状态对应组件状态表).includes(p)) {
           console.log(t, p, v);
