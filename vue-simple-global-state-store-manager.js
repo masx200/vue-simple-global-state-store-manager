@@ -80,7 +80,17 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   Object.keys(vueinitconstructfun).forEach(k => {
     com[k] = vueinitconstructfun[k];
   });
-
+  //vue.extend函数会被vue-loader修改这个属性options
+  com.options._Ctor[0] = com;
+  com.options = new Proxy(com.options, {
+    set(t, k, v) {
+      // console.log(t, k, v);
+      // console.log(k, v);
+      Reflect.set(vueinitconstructfun.options, k, v);
+      /* 把对当前函数的options的修改,传递给组件构造函数的options */
+      return Reflect.set(t, k, v);
+    }
+  });
   return com;
 
   function com(o) {
