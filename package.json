@@ -1,6 +1,6 @@
 {
     "name": "vue-simple-global-state-store-manager",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "main": "./vue-simple-global-state-store-manager.js",
     "repository": {
         "type": "git",
