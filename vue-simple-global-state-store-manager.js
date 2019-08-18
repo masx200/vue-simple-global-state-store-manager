@@ -76,7 +76,9 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   Object.keys(vueinitconstructfun).forEach(k => {
     com[k] = vueinitconstructfun[k];
   });
-
+  Object.keys(com).forEach(k => {
+    vueinitconstructfun[k] = com[k];
+  });
   return com;
 
   function com(o) {
