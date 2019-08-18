@@ -76,13 +76,13 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   Object.keys(vueinitconstructfun).forEach(k => {
     com[k] = vueinitconstructfun[k];
   });
-  
+
   return com;
 
   function com(o) {
-Object.keys(com).forEach(k => {
-    vueinitconstructfun[k] = com[k];
-  });
+    Object.keys(com).forEach(k => {
+      vueinitconstructfun[k] = com[k];
+    });
     const vuecominstance = Object.create(vueinitconstructfun.prototype);
     const eventchangehandler = {};
 
