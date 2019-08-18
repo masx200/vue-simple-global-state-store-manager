@@ -1,5 +1,7 @@
 import Vue from "vue/dist/vue.esm.browser.js";
-
+function jsondeepequal(a, b) {
+  return JSON.stringify(a) === JSON.stringify(b);
+}
 function isinvalidstate(newstate) {
   return (
     "undefined" === typeof newstate ||
@@ -62,14 +64,13 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
 
   //Vue.extend自动识别是组件构造函数函数还是参数对象
 
-var vueinitconstructfun
+  var vueinitconstructfun;
 
-if("object"===typeof vueinitopt){
-   vueinitconstructfun = Vue.extend(vueinitopt);
-}else if("function"===typeof vueinitopt){
-vueinitconstructfun=vueinitopt
-
-}
+  if ("object" === typeof vueinitopt) {
+    vueinitconstructfun = Vue.extend(vueinitopt);
+  } else if ("function" === typeof vueinitopt) {
+    vueinitconstructfun = vueinitopt;
+  }
   com.prototype = vueinitconstructfun.prototype;
 
   Object.keys(vueinitconstructfun).forEach(k => {
@@ -79,7 +80,7 @@ vueinitconstructfun=vueinitopt
   return com;
 
   function com(o) {
-const vuecominstance=Object.create(vueinitconstructfun.prototype)
+    const vuecominstance = Object.create(vueinitconstructfun.prototype);
     const eventchangehandler = {};
 
     Object.keys(全局状态对应组件状态表).forEach(key => {
@@ -87,9 +88,15 @@ const vuecominstance=Object.create(vueinitconstructfun.prototype)
       eventchangehandler[eventname] = function() {
         console.log("接受状态改变事件", eventname);
 
-var newstate=JSON.parse(JSON.stringify(simpleglobalstatestore[key]))
-Reflect.set(vuecominstance, 全局状态对应组件状态表[key], newstate);
-
+        var newstate = simpleglobalstatestore[key];
+        let oldstate = vuecominstance[全局状态对应组件状态表[key]];
+        if (!jsondeepequal(newstate, oldstate)) {
+          Reflect.set(
+            vuecominstance,
+            全局状态对应组件状态表[key],
+            JSON.parse(JSON.stringify(newstate))
+          );
+        }
       };
     });
     function onmounted() {
@@ -99,17 +106,15 @@ Reflect.set(vuecominstance, 全局状态对应组件状态表[key], newstate);
         //
 
         temptarget.addEventListener(eventname, eventchangehandler[eventname]);
-    
 
-
-//如果全局状态没有初始值，则用组件状态代替
-if ("undefined" === typeof simpleglobalstatestore[key]) {
-      simpleglobalstatestore[key] = vuecominstance[全局状态对应组件状态表[key]];
-    }
-//组件挂载时同步一次状态
-temptarget.dispatchEvent(new Event(eventname));
-
-  });
+        //如果全局状态没有初始值，则用组件状态代替
+        if ("undefined" === typeof simpleglobalstatestore[key]) {
+          simpleglobalstatestore[key] =
+            vuecominstance[全局状态对应组件状态表[key]];
+        }
+        //组件挂载时同步一次状态
+        temptarget.dispatchEvent(new Event(eventname));
+      });
     }
     function ondestroyed() {
       console.log("ondestroyed");
@@ -124,41 +129,45 @@ temptarget.dispatchEvent(new Event(eventname));
       });
     }
     var i = new Proxy(
+      vuecominstance,
 
-vuecominstance
+      {
+        set(t, p, v) {
+          if (Object.values(全局状态对应组件状态表).includes(p)) {
+            console.log(t, p, v);
+            if (isinvalidstate(v)) {
+              throw Error("invalid state");
+            }
+            //p是组件状态
+            let eventname = 使用value从表中查询key(p);
+            let newstate = v;
+            let oldstate = t[p];
+            if (!jsondeepequal(newstate, oldstate)) {
+              simpleglobalstatestore[eventname] = JSON.parse(JSON.stringify(v));
+              console.log("全局状态改变", simpleglobalstatestore);
+              temptarget.dispatchEvent(new Event(eventname));
+              console.log("触发状态改变事件", eventname);
+            }
+          } else {
+            //   console.log(t, p, v);
 
+            //_isMounted;
+            if (_isMounted === p && v === true && t[_isMounted] === false) {
+              console.log(t, p, v);
+              onmounted();
+            }
 
-, {
-      set(t, p, v) {
-        if (Object.values(全局状态对应组件状态表).includes(p)) {
-          console.log(t, p, v);
-if (isinvalidstate(v)) {
-          throw Error("invalid state");
+            //_isDestroyed
+            if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
+              console.log(t, p, v);
+              ondestroyed();
+            }
+            Reflect.set(t, p, v);
+          }
+          return true;
         }
-          //p是组件状态
-          let eventname = 使用value从表中查询key(p);
-simpleglobalstatestore[eventname]=JSON.parse(JSON.stringify(v))
-          temptarget.dispatchEvent(new Event(eventname));
-          console.log("触发状态改变事件", eventname);
-        } else {
-          //   console.log(t, p, v);
-        
-        //_isMounted;
-        if (_isMounted === p && v === true && t[_isMounted] === false) {
-          console.log(t, p, v);
-          onmounted();
-        }
-
-        //_isDestroyed
-        if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
-          console.log(t, p, v);
-          ondestroyed();
-        }
-        Reflect.set(t, p, v);
-}
-        return true;
       }
-    });
+    );
     vueinitconstructfun.call(i, o);
     return i;
   }
