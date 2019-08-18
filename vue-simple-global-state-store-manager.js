@@ -89,7 +89,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     Object.keys(全局状态对应组件状态表).forEach(key => {
       const eventname = key;
       eventchangehandler[eventname] = function() {
-        console.log("接受状态改变事件", eventname);
+        // console.log("接受状态改变事件", eventname);
 
         var newstate = simpleglobalstatestore[key];
         let oldstate = vuecominstance[全局状态对应组件状态表[key]];
@@ -103,7 +103,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
       };
     });
     function onmounted() {
-      console.log("onmounted");
+      //   console.log("onmounted");
       Object.keys(全局状态对应组件状态表).forEach(key => {
         const eventname = key;
         //
@@ -120,7 +120,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
       });
     }
     function ondestroyed() {
-      console.log("ondestroyed");
+      //   console.log("ondestroyed");
       Object.keys(全局状态对应组件状态表).forEach(key => {
         const eventname = key;
         //
@@ -137,7 +137,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
       {
         set(t, p, v) {
           if (Object.values(全局状态对应组件状态表).includes(p)) {
-            console.log(t, p, v);
+            // console.log(t, p, v);
             if (isinvalidstate(v)) {
               throw Error("invalid state");
             }
@@ -149,20 +149,20 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
               simpleglobalstatestore[eventname] = JSON.parse(JSON.stringify(v));
               console.log("全局状态改变", simpleglobalstatestore);
               temptarget.dispatchEvent(new Event(eventname));
-              console.log("触发状态改变事件", eventname);
+              //   console.log("触发状态改变事件", eventname);
             }
           } else {
             //   console.log(t, p, v);
 
             //_isMounted;
             if (_isMounted === p && v === true && t[_isMounted] === false) {
-              console.log(t, p, v);
+              //   console.log(t, p, v);
               onmounted();
             }
 
             //_isDestroyed
             if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
-              console.log(t, p, v);
+              //   console.log(t, p, v);
               ondestroyed();
             }
             Reflect.set(t, p, v);
