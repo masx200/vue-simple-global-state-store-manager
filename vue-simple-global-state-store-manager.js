@@ -82,6 +82,9 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   });
   //vue.extend函数会被vue-loader修改这个属性options
   com.options._Ctor[0] = com;
+
+com._Ctor=com.options._Ctor
+
   com.options = new Proxy(com.options, {
     set(t, k, v) {
       // console.log(t, k, v);
