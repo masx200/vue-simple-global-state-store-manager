@@ -1,9 +1,9 @@
-const Vue = {};
+let Vue = {};
 Vue.extend = function() {
   throw new Error("没有先调用'Vue.use()'!");
 };
 export default function(vuefun) {
-  Vue.extend = vuefun.extend;
+  Vue = vuefun;
 }
 function jsondeepequal(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
