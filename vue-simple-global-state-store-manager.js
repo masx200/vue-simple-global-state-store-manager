@@ -1,4 +1,12 @@
-import Vue from "vue/dist/vue.esm.browser.js";
+// import Vue from "vue/dist/vue.esm.browser.js";
+const Vue = {};
+Vue.extend = function() {
+  throw new Error("没有先调用'Vue.use()'!");
+};
+export default function(vuefun) {
+  Vue.extend = vuefun.extend;
+  //
+}
 function jsondeepequal(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
