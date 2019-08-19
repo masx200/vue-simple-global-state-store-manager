@@ -117,6 +117,9 @@ export default comfu;
 </script>>
 ```
 
+# 演示网址
+
+https://masx200.github.io/my-vue-router-project/index.html#/vue-simple-global-state-store-manager
 
 # 原理
 
