@@ -18,13 +18,13 @@ https://github.com/masx200/vue-simple-global-state-store-manager
 
 # 局部安装
 
-```
+```powershell
 cnpm install  --save https://github.com/masx200/vue-simple-global-state-store-manager.git
 ```
 
 或者
 
-```
+```powershell
 yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 ```
 
@@ -128,8 +128,7 @@ new Vue({
   );
 
   export default comfu;
-</script
->
+</script>
 ```
 
 # 演示网址
