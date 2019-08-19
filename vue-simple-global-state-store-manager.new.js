@@ -70,13 +70,45 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
   });
 
-  let vueinitconstructfun;
-
-  if ("object" === typeof vueinitopt) {
+  const vueinitconstructfun=()=>{
+  let vueinitconstructfun
+   if ("object" === typeof vueinitopt) {
     vueinitconstructfun = Vueextend(vueinitopt);
   } else if ("function" === typeof vueinitopt) {
     vueinitconstructfun = vueinitopt;
   }
+  return vueinitconstructfun
+  
+  
+  }()
+
+ 
+
+
+const com=new Proxy(vueinitconstructfun,{
+
+
+construct: function(target, argumentsList, newTarget) {
+  
+  
+  
+  
+  }
+,
+
+
+
+apply: function(target, thisArg, argumentsList) {
+
+  
+    
+      
+        
+            }
+  
+  
+  
+})
 
 
 
@@ -86,28 +118,31 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
 
 
 
-
-
-
-  com.prototype = vueinitconstructfun.prototype;
-
+ // com.prototype = vueinitconstructfun.prototype;
+/*
   Object.keys(vueinitconstructfun).forEach(k => {
     com[k] = vueinitconstructfun[k];
   });
   //Vueextend函数会被vue-loader修改这个属性options
+*/
   com.options._Ctor[0] = com;
 
 com._Ctor=com.options._Ctor
-
+/*
   com.options = new Proxy(com.options, {
     set(t, k, v) {
       // console.log(t, k, v);
       // console.log(k, v);
       Reflect.set(vueinitconstructfun.options, k, v);
       /* 把对当前函数的options的修改,传递给组件构造函数的options */
-      return Reflect.set(t, k, v);
+   /*   return Reflect.set(t, k, v);
     }
   });
+  */
+  
+  
+  
+  
   return com;
 
   function com(o) {
