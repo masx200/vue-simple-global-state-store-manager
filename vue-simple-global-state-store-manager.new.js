@@ -70,7 +70,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
   });
 
-  const vueinitconstructfun=()=>{
+  const vueinitconstructfun=(vueinitopt)=>{
   let vueinitconstructfun
    if ("object" === typeof vueinitopt) {
     vueinitconstructfun = Vueextend(vueinitopt);
@@ -80,7 +80,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   return vueinitconstructfun
   
   
-  }()
+  }(vueinitopt)
 
  
 
