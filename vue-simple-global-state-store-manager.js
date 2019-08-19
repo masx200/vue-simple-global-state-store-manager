@@ -1,22 +1,11 @@
-"use strict"
-
-/*
-export function getGlobalStates(){
+"use strict";
 
 
-return new Proxy(simpleglobalstatestore,
-
-{set(){return }}
-)
-
-
-}
-*/
 let Vueextend = function() {
   throw new Error("没有先调用'Vue.use()'!");
 };
 export default function(vuefun) {
-  Vueextend= vuefun.extend.bind(vuefun);
+  Vueextend = vuefun.extend.bind(vuefun);
 }
 function jsondeepequal(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
@@ -81,56 +70,29 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
   });
 
-  const vueinitconstructfun=(vueinitopt)=>{
-  let vueinitconstructfun
-   if ("object" === typeof vueinitopt) {
-    vueinitconstructfun = Vueextend(vueinitopt);
-  } else if ("function" === typeof vueinitopt) {
-    vueinitconstructfun = vueinitopt;
-  }
-  return vueinitconstructfun
-  
-  
-  }(vueinitopt)
+  const vueinitconstructfun = (vueinitopt => {
+    let vueinitconstructfun;
+    if ("object" === typeof vueinitopt) {
+      vueinitconstructfun = Vueextend(vueinitopt);
+    } else if ("function" === typeof vueinitopt) {
+      vueinitconstructfun = vueinitopt;
+    }
+    return vueinitconstructfun;
+  })(vueinitopt);
 
- 
-//对组件proxy构造函数的修改都会直接传递给vuecomponent构造函数
+  //对组件proxy构造函数的修改都会直接传递给vuecomponent构造函数
 
-const com=new Proxy(vueinitconstructfun,{
+  const com = new Proxy(vueinitconstructfun, {
+    construct: function(target, argumentsList, newTarget) {
+      return new comoldconstructor(...argumentsList);
+    },
+    apply: function(target, thisArg, argumentsList) {
+      return new comoldconstructor(...argumentsList);
+    }
+  });
 
-
-construct: function(target, argumentsList, newTarget) {
-  
-  return new comoldconstructor(...argumentsList)
-  
-  
-  }
-,
-
-
-
-apply: function(target, thisArg, argumentsList) {
-
-  
-    return new comoldconstructor(...argumentsList)
-      
-        
-            }
-  
-  
-  
-})
-
-
-
-
-
-
-
-
-
- // com.prototype = vueinitconstructfun.prototype;
-/*
+  // com.prototype = vueinitconstructfun.prototype;
+  /*
   Object.keys(vueinitconstructfun).forEach(k => {
     com[k] = vueinitconstructfun[k];
   });
@@ -138,22 +100,19 @@ apply: function(target, thisArg, argumentsList) {
 */
   com.options._Ctor[0] = com;
 
-com._Ctor=com.options._Ctor
-/*
+  com._Ctor = com.options._Ctor;
+  /*
   com.options = new Proxy(com.options, {
     set(t, k, v) {
       // console.log(t, k, v);
       // console.log(k, v);
       Reflect.set(vueinitconstructfun.options, k, v);
       /* 把对当前函数的options的修改,传递给组件构造函数的options */
-   /*   return Reflect.set(t, k, v);
+  /*   return Reflect.set(t, k, v);
     }
   });
   */
-  
-  
-  
-  
+
   return com;
 
   function comoldconstructor(o) {
