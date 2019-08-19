@@ -30,7 +30,17 @@ yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 
 ## 用法
 
-使用前先使用`Vue.use(SimpleStoreManager)`注册一下`SimpleStoreManager`
+```javascript
+import SimpleStoreManager, {
+  bindGlobalStore,
+  initGlobalState,
+  getGlobalStates
+} from "vue-simple-global-state-store-manager";
+```
+
+使用前先使用`Vue.use(SimpleStoreManager)`注册一下
+
+### 函数`getGlobalStates`用来读取全局状态
 
 ### 函数`initGlobalState`用来生成状态初始值，
 
