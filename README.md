@@ -22,3 +22,11 @@ cnpm install  --save https://github.com/masx200/vue-simple-global-state-store-ma
 yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 ```
 ## 用法
+
+```js
+import Vue from "vue/dist/vue.esm.browser.min.js";
+
+import SimpleStoreManager from "vue-simple-global-state-store-manager"; // bindGlobalStore // initGlobalState,
+
+Vue.use(SimpleStoreManager);
+```
