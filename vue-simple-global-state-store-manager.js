@@ -1,6 +1,10 @@
 "use strict";
 
+export function getGlobalStates(){
 
+return newobjjson(simpleglobalstatestore)
+
+}
 let Vueextend = function() {
   throw new Error("没有先调用'Vue.use()'!");
 };
