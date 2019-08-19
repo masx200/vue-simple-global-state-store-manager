@@ -83,7 +83,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   }(vueinitopt)
 
  
-
+//对组件proxy构造函数的修改都会直接传递给vuecomponent构造函数
 
 const com=new Proxy(vueinitconstructfun,{
 
