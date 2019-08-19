@@ -35,6 +35,7 @@ yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 
 第二个参数为一个`object`或者`function`，是`vue`组件的构造参数或者`vue`组件的构造函数
 
+返回值是`vue`组件的构造函数
 
 # 示例
 
