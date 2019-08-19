@@ -17,13 +17,17 @@ https://github.com/masx200/vue-simple-global-state-store-manager
 全局状态改变时组件状态改变
 
 # 局部安装
+
 ```
 cnpm install  --save https://github.com/masx200/vue-simple-global-state-store-manager.git
 ```
+
 或者
+
 ```
 yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 ```
+
 ## 用法
 
 使用前先使用`Vue.use(SimpleStoreManager)`注册一下`SimpleStoreManager`
@@ -47,7 +51,10 @@ yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 ```js
 import Vue from "vue/dist/vue.esm.browser.min.js";
 
-import SimpleStoreManager,{bindGlobalStore,initGlobalState} from "vue-simple-global-state-store-manager"; 
+import SimpleStoreManager, {
+  bindGlobalStore,
+  initGlobalState
+} from "vue-simple-global-state-store-manager";
 
 Vue.use(SimpleStoreManager);
 
@@ -55,21 +62,16 @@ initGlobalState({
   globaltestname: "helloworld-使用全局状态管理"
 });
 
-import AppHome from "./apphome.vue"
+import AppHome from "./apphome.vue";
 
 new Vue({
-    el: document.querySelector("#root"),
-    
-    
-    
-    render(h) {
-      return h(AppHome);
-    }
-    
-  });
+  el: document.querySelector("#root"),
 
+  render(h) {
+    return h(AppHome);
+  }
+});
 ```
-
 
 `apphome.vue`
 
@@ -80,53 +82,50 @@ new Vue({
       testname:
       <input class="form-control" v-model="testname" />
     </p>
-    <button class="btn btn-outline-success btn-lg" v-on:click="changevalue()">修改testname</button>
+    <button class="btn btn-outline-success btn-lg" v-on:click="changevalue()">
+      修改testname
+    </button>
   </div>
 </template>
 <script>
-import {
-  initGlobalState,
-  bindGlobalStore
-} from "vue-simple-global-state-store-manager";
+  import {
+    initGlobalState,
+    bindGlobalStore
+  } from "vue-simple-global-state-store-manager";
 
-initGlobalState({
-  globaltestname: "helloworld-使用全局状态管理"
-});
+  initGlobalState({
+    globaltestname: "helloworld-使用全局状态管理"
+  });
 
-var comp = {
-  
-  methods: {
-    changevalue() {
-      this.testname =
-        Math.random() > 0.5 ? this.testname + "te--" : "--st" + this.testname;
+  var comp = {
+    methods: {
+      changevalue() {
+        this.testname =
+          Math.random() > 0.5 ? this.testname + "te--" : "--st" + this.testname;
+      }
+    },
+    data() {
+      return { testname: "helloworld-test使用全局状态管理" };
     }
-  },
-  data() {
-    return { testname: "helloworld-test使用全局状态管理" };
-  }
-};
+  };
 
-var comfu = bindGlobalStore(
-  {
-    globaltestname: "testname"
-  },
-  
-  comp
-);
+  var comfu = bindGlobalStore(
+    {
+      globaltestname: "testname"
+    },
 
-export default comfu;
-</script>>
+    comp
+  );
+
+  export default comfu;</script
+>>
 ```
 
 # 演示网址
 
 https://masx200.github.io/my-vue-router-project/index.html#/vue-simple-global-state-store-manager
 
-
-
-
 # 为什么要写这个状态管理工具？
-
 
 因为
 
@@ -158,7 +157,6 @@ https://masx200.github.io/my-vue-router-project/index.html#/vue-simple-global-st
 
 返回的构造函数是被 `Proxy`代理的`vue`组件实例，监听组件的状态变化和挂载卸载事件
 
-
 # Vue
 
 Vue 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用
@@ -173,6 +171,6 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 
 # EventTarget
 
-EventTarget是一个由可以接收事件的对象实现的接口，并且可以为它们创建侦听器
+EventTarget 是一个由可以接收事件的对象实现的接口，并且可以为它们创建侦听器
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget
