@@ -28,4 +28,19 @@ import Vue from "vue/dist/vue.esm.browser.min.js";
 
 import SimpleStoreManager,{bindGlobalStore,initGlobalState} from "vue-simple-global-state-store-manager"; 
 Vue.use(SimpleStoreManager);
+
+
+new Vue({
+    el: document.querySelector("#root"),
+    
+    components: {
+      
+    },
+    
+    render(h) {
+      return h(AppHome);
+    }
+    
+  });
+
 ```
