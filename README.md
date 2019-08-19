@@ -6,3 +6,15 @@
 
 
 ## 组件状态与全局状态双向绑定
+
+
+
+# 局部安装
+
+cnpm install  --save https://github.com/masx200/vue-simple-global-state-store-manager.git
+
+或者
+
+yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
+
+## 用法
