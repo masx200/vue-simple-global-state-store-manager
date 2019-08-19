@@ -90,7 +90,7 @@ const com=new Proxy(vueinitconstructfun,{
 
 construct: function(target, argumentsList, newTarget) {
   
-  return comoldconstructor(...argumentsList)
+  return new comoldconstructor(...argumentsList)
   
   
   }
