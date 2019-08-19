@@ -1,5 +1,4 @@
 "use strict";
-
 export function getGlobalStates() {
   return newobjjson(simpleglobalstatestore);
 }
@@ -20,12 +19,10 @@ function isinvalidstate(newstate) {
     "symbol" === typeof newstate
   );
 }
-
 const _isDestroyed = "_isDestroyed";
 const _isMounted = "_isMounted";
 const temptarget = new EventTarget();
 const simpleglobalstatestore = {};
-
 function newobjjson(obj) {
   if (typeof obj !== "object") {
     throw new TypeError("传入的参数必须是个object!");
@@ -43,20 +40,16 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   if (!isobject(jsonobjopt)) {
     throw Error("invalid object");
   }
-
   if (!("function" == typeof vueinitopt || "object" == typeof vueinitopt)) {
     throw Error("invalid component");
   }
-
   const 全局状态对应组件状态表 = newobjjson(jsonobjopt);
-
   if (
     Object.values(全局状态对应组件状态表).length !==
     Array.from(new Set(Object.values(全局状态对应组件状态表))).length
   ) {
     throw new Error("一个组件状态只能绑定一个全局状态,");
   }
-
   function 使用value从表中查询key(组件状态名) {
     return Object.entries(全局状态对应组件状态表).find(v => {
       return v[1] === 组件状态名;
@@ -71,7 +64,6 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
       throw new TypeError("invalid value");
     }
   });
-
   const vueinitconstructfun = (vueinitopt => {
     let vueinitconstructfun;
     if ("object" === typeof vueinitopt) {
@@ -81,46 +73,20 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
     return vueinitconstructfun;
   })(vueinitopt);
-
-  //对组件proxy构造函数的修改都会直接传递给vuecomponent构造函数
-
   const com = new Proxy(vueinitconstructfun, {
-    construct: function(target, argumentsList, newTarget) {
+    construct: function(target, argumentsList) {
       return new comoldconstructor(...argumentsList);
     },
     apply: function(target, thisArg, argumentsList) {
       return new comoldconstructor(...argumentsList);
     }
   });
-
-  // com.prototype = vueinitconstructfun.prototype;
-  /*
-  Object.keys(vueinitconstructfun).forEach(k => {
-    com[k] = vueinitconstructfun[k];
-  });
-  //Vueextend函数会被vue-loader修改这个属性options
-*/
   com.options._Ctor[0] = com;
-
   com._Ctor = com.options._Ctor;
-  /*
-  com.options = new Proxy(com.options, {
-    set(t, k, v) {
-      // console.log(t, k, v);
-      // console.log(k, v);
-      Reflect.set(vueinitconstructfun.options, k, v);
-      /* 把对当前函数的options的修改,传递给组件构造函数的options */
-  /*   return Reflect.set(t, k, v);
-    }
-  });
-  */
-
   return com;
-
   function comoldconstructor(o) {
     const vuecominstance = Object.create(vueinitconstructfun.prototype);
     const eventchangehandler = {};
-
     Object.keys(全局状态对应组件状态表).forEach(key => {
       const eventname = key;
       eventchangehandler[eventname] = function() {
@@ -138,59 +104,49 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     function onmounted() {
       Object.keys(全局状态对应组件状态表).forEach(key => {
         const eventname = key;
-
         temptarget.addEventListener(eventname, eventchangehandler[eventname]);
-
         if ("undefined" === typeof simpleglobalstatestore[key]) {
           simpleglobalstatestore[key] =
             vuecominstance[全局状态对应组件状态表[key]];
         }
-
         temptarget.dispatchEvent(new Event(eventname));
       });
     }
     function ondestroyed() {
       Object.keys(全局状态对应组件状态表).forEach(key => {
         const eventname = key;
-
         temptarget.removeEventListener(
           eventname,
           eventchangehandler[eventname]
         );
       });
     }
-    var i = new Proxy(
-      vuecominstance,
-
-      {
-        set(t, p, v) {
-          if (Object.values(全局状态对应组件状态表).includes(p)) {
-            if (isinvalidstate(v)) {
-              throw Error("invalid state");
-            }
-
-            let eventname = 使用value从表中查询key(p);
-            let newstate = v;
-            let oldstate = t[p];
-            if (!jsondeepequal(newstate, oldstate)) {
-              simpleglobalstatestore[eventname] = JSON.parse(JSON.stringify(v));
-              console.log("全局状态改变", simpleglobalstatestore);
-              temptarget.dispatchEvent(new Event(eventname));
-            }
-          } else {
-            if (_isMounted === p && v === true && t[_isMounted] === false) {
-              onmounted();
-            }
-
-            if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
-              ondestroyed();
-            }
-            Reflect.set(t, p, v);
+    var i = new Proxy(vuecominstance, {
+      set(t, p, v) {
+        if (Object.values(全局状态对应组件状态表).includes(p)) {
+          if (isinvalidstate(v)) {
+            throw Error("invalid state");
           }
-          return true;
+          let eventname = 使用value从表中查询key(p);
+          let newstate = v;
+          let oldstate = t[p];
+          if (!jsondeepequal(newstate, oldstate)) {
+            simpleglobalstatestore[eventname] = JSON.parse(JSON.stringify(v));
+            console.log("全局状态改变", simpleglobalstatestore);
+            temptarget.dispatchEvent(new Event(eventname));
+          }
+        } else {
+          if (_isMounted === p && v === true && t[_isMounted] === false) {
+            onmounted();
+          }
+          if (_isDestroyed === p && v === true && t[_isDestroyed] === false) {
+            ondestroyed();
+          }
+          Reflect.set(t, p, v);
         }
+        return true;
       }
-    );
+    });
     vueinitconstructfun.call(i, o);
     return i;
   }
@@ -199,10 +155,8 @@ export function initGlobalState(jsonobject) {
   if (!isobject(jsonobject)) {
     throw Error("invalid object");
   }
-
   const newjsonobj = newobjjson(jsonobject);
   const newobjtoreturn = {};
-
   Object.keys(newjsonobj).forEach(key => {
     if ("undefined" === typeof simpleglobalstatestore[key]) {
       simpleglobalstatestore[key] = newjsonobj[key];
