@@ -1,9 +1,8 @@
-let Vue = {};
-Vue.extend = function() {
+let Vueextend = function() {
   throw new Error("没有先调用'Vue.use()'!");
 };
 export default function(vuefun) {
-  Vue = vuefun;
+  Vueextend= vuefun.extend.bind(vuefun);
 }
 function jsondeepequal(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
@@ -71,7 +70,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   var vueinitconstructfun;
 
   if ("object" === typeof vueinitopt) {
-    vueinitconstructfun = Vue.extend(vueinitopt);
+    vueinitconstructfun = Vueextend(vueinitopt);
   } else if ("function" === typeof vueinitopt) {
     vueinitconstructfun = vueinitopt;
   }
@@ -80,7 +79,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   Object.keys(vueinitconstructfun).forEach(k => {
     com[k] = vueinitconstructfun[k];
   });
-  //vue.extend函数会被vue-loader修改这个属性options
+  //Vueextend函数会被vue-loader修改这个属性options
   com.options._Ctor[0] = com;
 
 com._Ctor=com.options._Ctor
