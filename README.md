@@ -25,7 +25,7 @@ yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 
 使用前先使用`Vue.use(SimpleStoreManager)`注册一下`SimpleStoreManager`
 
-函数`initGlobalState`用来生成状态初始值
+函数`initGlobalState`用来生成状态初始值，参数为一个"object"，键名为全局状态名，键值为组件状态名
 
 函数`bindGlobalStore`用来订阅全局状态，组件状态与全局状态双向绑定
 
