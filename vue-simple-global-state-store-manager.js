@@ -70,13 +70,25 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
   });
 
-  var vueinitconstructfun;
+  let vueinitconstructfun;
 
   if ("object" === typeof vueinitopt) {
     vueinitconstructfun = Vueextend(vueinitopt);
   } else if ("function" === typeof vueinitopt) {
     vueinitconstructfun = vueinitopt;
   }
+
+
+
+
+
+
+
+
+
+
+
+
   com.prototype = vueinitconstructfun.prototype;
 
   Object.keys(vueinitconstructfun).forEach(k => {
