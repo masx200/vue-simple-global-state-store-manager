@@ -1,3 +1,6 @@
+"use strict"
+
+
 let Vueextend = function() {
   throw new Error("没有先调用'Vue.use()'!");
 };
