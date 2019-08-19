@@ -90,7 +90,7 @@ const com=new Proxy(vueinitconstructfun,{
 
 construct: function(target, argumentsList, newTarget) {
   
-  
+  return comoldconstructor(...argumentsList)
   
   
   }
@@ -145,7 +145,7 @@ com._Ctor=com.options._Ctor
   
   return com;
 
-  function com(o) {
+  function comoldconstructor(o) {
     const vuecominstance = Object.create(vueinitconstructfun.prototype);
     const eventchangehandler = {};
 
