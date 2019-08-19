@@ -29,6 +29,11 @@ yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 
 函数`bindGlobalStore`用来订阅全局状态，组件状态与全局状态双向绑定
 
+
+# 示例
+
+`index.js`
+
 ```js
 import Vue from "vue/dist/vue.esm.browser.min.js";
 
@@ -56,7 +61,7 @@ new Vue({
 ```
 
 
-
+`apphome.vue`
 
 ```html
 <template>
