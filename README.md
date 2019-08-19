@@ -127,8 +127,9 @@ new Vue({
     comp
   );
 
-  export default comfu;</script
->>
+  export default comfu;
+</script
+>
 ```
 
 # 演示网址
