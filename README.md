@@ -42,7 +42,7 @@ import SimpleStoreManager, {
 
 ### 函数`getGlobalStates`用来读取全局状态
 
-### 函数`initGlobalState`用来生成状态初始值，
+### 函数`initGlobalState`用来生成状态初始值，可以多次使用
 
 第一个参数为一个`object`，键名为全局状态名，键值为全局状态初始值
 
