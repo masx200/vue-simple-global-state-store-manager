@@ -139,6 +139,11 @@ export default comfu;
 返回的构造函数是被 `Proxy`代理的`vue`组件实例，监听组件的状态变化和挂载卸载事件
 
 
+# vue
+
+Vue 是一套用于构建用户界面的渐进式框架。与其它大型框架不同的是，Vue 被设计为可以自底向上逐层应用
+
+https://cn.vuejs.org/v2/guide/
 
 # Proxy
 
