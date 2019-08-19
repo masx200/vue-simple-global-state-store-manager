@@ -8,6 +8,7 @@ https://github.com/masx200/vue-simple-global-state-store-manager
 
 使用步骤只有两步，初始化全局状态，组件状态与全局状态双向绑定
 
+跟其他全局状态管理工具相比，使用这个库对于原有的代码不需要太多的修改
 
 ## 组件状态与全局状态双向绑定
 
@@ -135,7 +136,7 @@ https://masx200.github.io/my-vue-router-project/index.html#/vue-simple-global-st
 
 由于事件监听函数是异步执行，所以组件状态刷新也是异步执行的
 
-
+初始化全局状态时，如果当前全局状态已经存在，则不会重复初始化
 
 使用`Proxy`来代理组件的构造函数，适配`vue-loader`
 
