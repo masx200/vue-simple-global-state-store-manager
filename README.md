@@ -150,3 +150,9 @@ https://cn.vuejs.org/v2/guide/
 Proxy 对象用于定义基本操作的自定义行为（如属性查找，赋值，枚举，函数调用等）。
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
+
+# EventTarget
+
+EventTarget是一个由可以接收事件的对象实现的接口，并且可以为它们创建侦听器
+
+https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget
