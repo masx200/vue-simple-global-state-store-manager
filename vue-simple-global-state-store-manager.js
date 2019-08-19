@@ -1,6 +1,17 @@
 "use strict"
 
+/*
+export function getGlobalStates(){
 
+
+return new Proxy(simpleglobalstatestore,
+
+{set(){return }}
+)
+
+
+}
+*/
 let Vueextend = function() {
   throw new Error("没有先调用'Vue.use()'!");
 };
