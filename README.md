@@ -114,3 +114,10 @@ var comfu = bindGlobalStore(
 export default comfu;
 </script>>
 ```
+
+## 使用事件发布者订阅者模式来同步状态
+
+基于EventTarget
+
+
+
