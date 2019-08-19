@@ -101,7 +101,7 @@ construct: function(target, argumentsList, newTarget) {
 apply: function(target, thisArg, argumentsList) {
 
   
-    
+    return new com(...argumentsList)
       
         
             }
