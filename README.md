@@ -36,6 +36,9 @@ import SimpleStoreManager,{bindGlobalStore,initGlobalState} from "vue-simple-glo
 
 Vue.use(SimpleStoreManager);
 
+initGlobalState({
+  globaltestname: "helloworld-使用全局状态管理"
+});
 
 import AppHome from "./apphome.vue"
 
@@ -50,4 +53,52 @@ new Vue({
     
   });
 
+```
+
+
+
+
+```html
+<template>
+  <div>
+    <p>
+      testname:
+      <input class="form-control" v-model="testname" />
+    </p>
+    <button class="btn btn-outline-success btn-lg" v-on:click="changevalue()">修改testname</button>
+  </div>
+</template>
+<script>
+import {
+  initGlobalState,
+  bindGlobalStore
+} from "vue-simple-global-state-store-manager";
+
+initGlobalState({
+  globaltestname: "helloworld-使用全局状态管理"
+});
+
+var comp = {
+  name: "",
+  methods: {
+    changevalue() {
+      this.testname =
+        Math.random() > 0.5 ? this.testname + "te--" : "--st" + this.testname;
+    }
+  },
+  data() {
+    return { testname: "helloworld-test使用全局状态管理" };
+  }
+};
+
+var comfu = bindGlobalStore(
+  {
+    globaltestname: "testname"
+  },
+  
+  comp
+);
+
+export default comfu;
+</script>>
 ```
