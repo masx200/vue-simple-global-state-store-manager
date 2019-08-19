@@ -165,7 +165,7 @@ https://masx200.github.io/my-vue-router-project/index.html#/vue-simple-global-st
 
 使用`Proxy`来代理组件的构造函数，适配`vue-loader`，`vue-loader`会把预编译好的`render`函数等参数添加到`vuecomponent`构造函数的`options`属性上
 
-返回的构造函数是被 `Proxy`代理的`vue`组件实例，监听组件的状态变化和挂载卸载事件
+返回的构造函数生成的实例是被 `Proxy`代理的`vue`组件实例，监听组件的状态变化和挂载卸载事件
 
 # Vue
 
