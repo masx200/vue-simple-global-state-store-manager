@@ -179,6 +179,10 @@ Proxy 对象用于定义基本操作的自定义行为（如属性查找，赋�
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 
+
+
+在2019年，除了IE浏览器之外的浏览器都已经支持Proxy了
+
 # EventTarget
 
 EventTarget 是一个由可以接收事件的对象实现的接口，并且可以为它们创建侦听器
