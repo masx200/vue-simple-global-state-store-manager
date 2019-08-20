@@ -87,20 +87,16 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   function comoldconstructor(o) {
     const vuecominstance = Object.create(vueinitconstructfun.prototype);
     const eventchangehandler = {};
-    Object.keys(全局状态对应组件状态表).forEach(key => {
-      const eventname = key;
-      eventchangehandler[eventname] = function() {
-        var newstate = simpleglobalstatestore[key];
-        let oldstate = vuecominstance[全局状态对应组件状态表[key]];
-        if (!jsondeepequal(newstate, oldstate)) {
-          Reflect.set(
-            vuecominstance,
-            全局状态对应组件状态表[key],
-            JSON.parse(JSON.stringify(newstate))
-          );
-        }
-      };
-    });
+
+    function 初始化事件监听器() {
+      Object.keys(全局状态对应组件状态表).forEach(key => {
+        const eventname = key;
+        eventchangehandler[eventname] = function() {
+          使用全局状态名同步组件状态(eventname);
+        };
+      });
+    }
+    初始化事件监听器();
     function onmounted() {
       Object.keys(全局状态对应组件状态表).forEach(key => {
         const eventname = key;
@@ -148,6 +144,23 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
       }
     });
     vueinitconstructfun.call(i, o);
+
+    //组件创建之后,挂载之前,同步一次全局状态
+    Object.keys(全局状态对应组件状态表).forEach(key => {
+      const eventname = key;
+      使用全局状态名同步组件状态(eventname);
+    });
+    function 使用全局状态名同步组件状态(key) {
+      var newstate = simpleglobalstatestore[key];
+      let oldstate = vuecominstance[全局状态对应组件状态表[key]];
+      if (!jsondeepequal(newstate, oldstate)) {
+        Reflect.set(
+          vuecominstance,
+          全局状态对应组件状态表[key],
+          JSON.parse(JSON.stringify(newstate))
+        );
+      }
+    }
     return i;
   }
 }
