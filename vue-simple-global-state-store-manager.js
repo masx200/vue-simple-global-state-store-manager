@@ -1,4 +1,7 @@
 "use strict";
+function jsonparsestringify(o) {
+  return JSON.parse(JSON.stringify(o));
+}
 export function getGlobalStates() {
   return newobjjson(simpleglobalstatestore);
 }
@@ -27,7 +30,7 @@ function newobjjson(obj) {
   if (typeof obj !== "object") {
     throw new TypeError("传入的参数必须是个object!");
   }
-  return JSON.parse(JSON.stringify(obj));
+  return jsonparsestringify(obj);
 }
 function isobject(o) {
   return (
@@ -102,8 +105,9 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
         const eventname = key;
         temptarget.addEventListener(eventname, eventchangehandler[eventname]);
         if ("undefined" === typeof simpleglobalstatestore[key]) {
-          simpleglobalstatestore[key] =
-            vuecominstance[全局状态对应组件状态表[key]];
+          simpleglobalstatestore[key] = jsonparsestringify(
+            vuecominstance[全局状态对应组件状态表[key]]
+          );
         }
         temptarget.dispatchEvent(new Event(eventname));
       });
@@ -127,7 +131,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
           let newstate = v;
           let oldstate = t[p];
           if (!jsondeepequal(newstate, oldstate)) {
-            simpleglobalstatestore[eventname] = JSON.parse(JSON.stringify(v));
+            simpleglobalstatestore[eventname] = jsonparsestringify(v);
             console.log("全局状态改变", simpleglobalstatestore);
             temptarget.dispatchEvent(new Event(eventname));
           }
@@ -157,7 +161,7 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
         Reflect.set(
           vuecominstance,
           全局状态对应组件状态表[key],
-          JSON.parse(JSON.stringify(newstate))
+          jsonparsestringify(newstate)
         );
       }
     }
