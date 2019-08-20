@@ -43,7 +43,10 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
   if (!isobject(jsonobjopt)) {
     throw Error("invalid object");
   }
-  if (!("function" == typeof vueinitopt || "object" == typeof vueinitopt)) {
+  if (
+    !("function" == typeof vueinitopt || "object" == typeof vueinitopt) ||
+    !vueinitopt
+  ) {
     throw Error("invalid component");
   }
   const 全局状态对应组件状态表 = newobjjson(jsonobjopt);
