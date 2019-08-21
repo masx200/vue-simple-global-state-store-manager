@@ -44,11 +44,11 @@ import SimpleStoreManager, {
 
 ### 函数`initGlobalState`用来生成状态初始值，可以多次使用
 
-第一个参数为一个`object`，键名为全局状态名，键值为全局状态初始值
+第一个参数为一个`object`，键名为全局状态名，值为全局状态初始值
 
 ### 函数`bindGlobalStore`用来订阅全局状态，组件状态与全局状态双向绑定，
 
-第一个参数为一个`object`， 键名为全局状态名，键值为组件状态名称
+第一个参数为一个`object`， 键名为全局状态名，值为组件状态名称
 
 第二个参数为一个`object`或者`function`，是`vue`组件的构造参数或者`vue`组件的构造函数
 
