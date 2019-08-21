@@ -79,6 +79,13 @@ export function bindGlobalStore(jsonobjopt, vueinitopt) {
     }
     return vueinitconstructfun;
   })(vueinitopt);
+
+  if (typeof Proxy !== "function") {
+    setTimeout(() => {
+      throw Error("不支持Proxy!");
+    }, 0);
+    return vueinitconstructfun;
+  }
   const com = new Proxy(vueinitconstructfun, {
     construct: function(target, argumentsList) {
       return new comoldconstructor(...argumentsList);
