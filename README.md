@@ -183,7 +183,7 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 
 在2019年，除了IE浏览器之外的浏览器都已经支持Proxy了
 
-可以尝试添加proxy的polyfill
+可以尝试添加proxy的polyfill，不能保证在IE浏览器上正常运行
 
 
 https://github.com/GoogleChrome/proxy-polyfill
