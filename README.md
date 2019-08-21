@@ -183,8 +183,17 @@ https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects
 
 在2019年，除了IE浏览器之外的浏览器都已经支持Proxy了
 
+可以尝试添加proxy的polyfill
+
+
+https://github.com/GoogleChrome/proxy-polyfill
+
+
 # EventTarget
 
 EventTarget 是一个由可以接收事件的对象实现的接口，并且可以为它们创建侦听器
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget
+
+
+IE浏览器需要添加EventTarget的polyfill
