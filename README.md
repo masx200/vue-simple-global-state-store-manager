@@ -197,3 +197,5 @@ https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget
 
 
 IE浏览器需要添加EventTarget的polyfill
+
+https://github.com/mysticatea/event-target-shim
