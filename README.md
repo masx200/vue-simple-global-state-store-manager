@@ -4,6 +4,8 @@
 
 https://github.com/masx200/vue-simple-global-state-store-manager
 
+希望世上再无 难用的全局状态管理！
+
 ## 使用简单,可能是使用方法最简单的全局状态管理工具！
 
 使用步骤只有两步，初始化全局状态，组件状态与全局状态双向绑定
