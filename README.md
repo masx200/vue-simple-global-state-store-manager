@@ -2,6 +2,11 @@
 
 适用于`Vue.js`的极简全局状态管理库,基于`Proxy`和 `EventTarget`实现
 
+
+此库需要使用vue2.x的api
+
+
+
 https://github.com/masx200/vue-simple-global-state-store-manager
 
 希望世上再无 难用的全局状态管理！
