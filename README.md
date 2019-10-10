@@ -2,10 +2,7 @@
 
 适用于`Vue.js`的极简全局状态管理库,基于`Proxy`和 `EventTarget`实现
 
-
-此库需要使用vue2.x的api
-
-
+此库需要使用 vue2.x 的 api
 
 https://github.com/masx200/vue-simple-global-state-store-manager
 
@@ -186,15 +183,11 @@ Proxy 对象用于定义基本操作的自定义行为（如属性查找，赋�
 
 https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy
 
+在 2019 年，除了 IE 浏览器之外的浏览器都已经支持 Proxy 了
 
-
-在2019年，除了IE浏览器之外的浏览器都已经支持Proxy了
-
-可以尝试添加proxy的polyfill，不能保证在IE浏览器上正常运行
-
+可以尝试添加 proxy 的 polyfill，不能保证在 IE 浏览器上正常运行
 
 https://github.com/GoogleChrome/proxy-polyfill
-
 
 # EventTarget
 
@@ -202,8 +195,7 @@ EventTarget 是一个由可以接收事件的对象实现的接口，并且可�
 
 https://developer.mozilla.org/zh-CN/docs/Web/API/EventTarget
 
-
-IE浏览器需要添加EventTarget的polyfill和Event构造函数polyfill
+IE 浏览器需要添加 EventTarget 的 polyfill 和 Event 构造函数 polyfill
 
 https://github.com/mysticatea/event-target-shim
 
