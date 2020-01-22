@@ -1,5 +1,7 @@
 # vue-simple-global-state-store-manager
 
+此代码库仅供学习交流使用
+
 适用于`Vue.js`的极简全局状态管理库,基于`Proxy`和 `EventTarget`实现
 
 此库需要使用 vue2.x 的 api
