@@ -38,9 +38,9 @@ yarn add https://github.com/masx200/vue-simple-global-state-store-manager.git
 
 ```javascript
 import SimpleStoreManager, {
-  bindGlobalStore,
-  initGlobalState,
-  getGlobalStates
+    bindGlobalStore,
+    initGlobalState,
+    getGlobalStates,
 } from "vue-simple-global-state-store-manager";
 ```
 
@@ -68,24 +68,24 @@ import SimpleStoreManager, {
 import Vue from "vue/dist/vue.esm.browser.min.js";
 
 import SimpleStoreManager, {
-  bindGlobalStore,
-  initGlobalState
+    bindGlobalStore,
+    initGlobalState,
 } from "vue-simple-global-state-store-manager";
 
 Vue.use(SimpleStoreManager);
 
 initGlobalState({
-  globaltestname: "helloworld-使用全局状态管理"
+    globaltestname: "helloworld-使用全局状态管理",
 });
 
 import AppHome from "./apphome.vue";
 
 new Vue({
-  el: document.querySelector("#root"),
+    el: document.querySelector("#root"),
 
-  render(h) {
-    return h(AppHome);
-  }
+    render(h) {
+        return h(AppHome);
+    },
 });
 ```
 
@@ -93,47 +93,52 @@ new Vue({
 
 ```html
 <template>
-  <div>
-    <p>
-      testname:
-      <input class="form-control" v-model="testname" />
-    </p>
-    <button class="btn btn-outline-success btn-lg" v-on:click="changevalue()">
-      修改testname
-    </button>
-  </div>
+    <div>
+        <p>
+            testname:
+            <input class="form-control" v-model="testname" />
+        </p>
+        <button
+            class="btn btn-outline-success btn-lg"
+            v-on:click="changevalue()"
+        >
+            修改testname
+        </button>
+    </div>
 </template>
 <script>
-  import {
-    initGlobalState,
-    bindGlobalStore
-  } from "vue-simple-global-state-store-manager";
+    import {
+        initGlobalState,
+        bindGlobalStore,
+    } from "vue-simple-global-state-store-manager";
 
-  initGlobalState({
-    globaltestname: "helloworld-使用全局状态管理"
-  });
+    initGlobalState({
+        globaltestname: "helloworld-使用全局状态管理",
+    });
 
-  var comp = {
-    methods: {
-      changevalue() {
-        this.testname =
-          Math.random() > 0.5 ? this.testname + "te--" : "--st" + this.testname;
-      }
-    },
-    data() {
-      return { testname: "helloworld-test使用全局状态管理" };
-    }
-  };
+    var comp = {
+        methods: {
+            changevalue() {
+                this.testname =
+                    Math.random() > 0.5
+                        ? this.testname + "te--"
+                        : "--st" + this.testname;
+            },
+        },
+        data() {
+            return { testname: "helloworld-test使用全局状态管理" };
+        },
+    };
 
-  var comfu = bindGlobalStore(
-    {
-      globaltestname: "testname"
-    },
+    var comfu = bindGlobalStore(
+        {
+            globaltestname: "testname",
+        },
 
-    comp
-  );
+        comp
+    );
 
-  export default comfu;
+    export default comfu;
 </script>
 ```
 
