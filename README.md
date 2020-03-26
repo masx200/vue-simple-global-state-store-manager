@@ -208,6 +208,4 @@ IE 浏览器需要添加 EventTarget 的 polyfill 和 Event 构造函数 polyfil
 
 https://github.com/mysticatea/event-target-shim
 
-https://github.com/masx200/webpack-react-vue-spa-awesome-config/blob/master/polyfill/EventTarget-polyfill.js
-
-https://github.com/masx200/webpack-react-vue-spa-awesome-config/blob/master/polyfill/event-polyfill.js
+https://github.com/masx200/webpack-react-vue-spa-awesome-config/blob/master/polyfill/polyfill.min.js
