@@ -41,7 +41,7 @@ import SimpleStoreManager, {
     bindGlobalStore,
     initGlobalState,
     getGlobalStates,
-} from "vue-simple-global-state-store-manager";
+} from "@masx200/vue-simple-global-state-store-manager";
 ```
 
 使用前先使用`Vue.use(SimpleStoreManager)`注册一下
@@ -65,12 +65,12 @@ import SimpleStoreManager, {
 `index.js`
 
 ```js
-import Vue from "vue/dist/vue.esm.browser.min.js";
+import Vue from "vue";
 
 import SimpleStoreManager, {
     bindGlobalStore,
     initGlobalState,
-} from "vue-simple-global-state-store-manager";
+} from "@masx200/vue-simple-global-state-store-manager";
 
 Vue.use(SimpleStoreManager);
 
@@ -110,13 +110,15 @@ new Vue({
     import {
         initGlobalState,
         bindGlobalStore,
-    } from "vue-simple-global-state-store-manager";
+    } from "@masx200/vue-simple-global-state-store-manager";
 
     initGlobalState({
         globaltestname: "helloworld-使用全局状态管理",
     });
 
-    var comp = {
+import Vue from "vue";
+
+    const comp = Vue.extend({
         methods: {
             changevalue() {
                 this.testname =
@@ -128,9 +130,9 @@ new Vue({
         data() {
             return { testname: "helloworld-test使用全局状态管理" };
         },
-    };
+    });
 
-    var comfu = bindGlobalStore(
+    const comfu = bindGlobalStore(
         {
             globaltestname: "testname",
         },
