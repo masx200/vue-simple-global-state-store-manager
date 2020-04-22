@@ -1,4 +1,30 @@
+# 注意,此代码存储库已被弃用,不会再更新维护了.
+
+# Note that this code repository has been deprecated and will not be updated and maintained.
+
+
+
+
+
+
+
+
+
+
+
 # vue-simple-global-state-store-manager
+
+
+
+
+
+
+
+
+
+
+
+
 
 此代码库仅供学习交流使用
 
